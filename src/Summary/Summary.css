@@ -1,0 +1,13 @@
+.summary_item{
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+}
+
+.summary_item--correct{
+  background: #72BD66;
+}
+
+.summary_item--inCorrect{
+  background: #C7C26B;
+}

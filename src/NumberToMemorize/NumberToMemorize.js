@@ -4,7 +4,7 @@ import './NumberToMemorize.css';
 class NumberToMemorize extends React.Component {
   constructor(props){
     super(props);
-    setTimeout( this.timeIsUp, this.props.time );
+    setTimeout( this.timeIsUp, this.props.time* 1000 );
   }
   timeIsUp = () =>{
     this.props.timeIsUp();

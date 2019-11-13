@@ -1,13 +1,31 @@
-.summary_item{
+.summary{
+  margin-top: 25px;
+  padding-top: 25px;
+  /*padding-bottom:150px;*/
+
+  border-top: 1px solid #C7C26B;
+}
+
+.summary__list{
+  padding: 0;
+  max-height:28vw;
+  overflow-y: scroll;
+}
+
+.summary__item{
   padding: 10px;
   margin: 0;
   list-style: none;
 }
 
-.summary_item--correct{
-  background: #72BD66;
+.summary__item--correct{
+  background: #C6E8A2;
 }
 
-.summary_item--inCorrect{
-  background: #C7C26B;
+.summary__item--inCorrect{
+  background: #FFF3B3;
+}
+
+.summary__item span{
+  padding: 0 10px;
 }

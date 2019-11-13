@@ -1,15 +1,28 @@
-.memorized-number{
+.config{
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+  margin-top: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  border-top: 1px solid #C7C26B;
+  background: #F7FFC0;
+}
+
+.config__label--break{
+  display: block;
+}
+
+.config__input{
+  width:70px;
   border: none;
   border-bottom: 1px solid #C7C26B;
   border-radius: none;
-  font-size: 3rem;
+  font-size: 1rem;
   color: #72BD66;
   background: none;
   outline: none;
   text-align: center;
-}
-
-.memorized-number::placeholder{
-  font-size: 2rem;
-  color: #C7C26B;
 }

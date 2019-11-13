@@ -1,4 +1,6 @@
 .memorized-number{
+  box-sizing: border-box;
+  height: 4rem;
   border: none;
   border-bottom: 1px solid #C7C26B;
   border-radius: none;

@@ -9,16 +9,18 @@ import Summary from './Summary/Summary';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.time = 2000;
+    //this.time = 2;
     this.digitCount = 5;
 
     this.state = { 
       'number': this.getRandomNumber(this.digitCount),
       'MemorizedNumber': '',
-      'time': this.time,//[ms]
+      'time': 2,//[seconds]
       'timeIsUp': false,
       'history': [],
-      'digitCount': this.digitCount
+      'digitCount': this.digitCount,
+      'isConfigPanelDisplayed': false,
+      'isSummaryDisplayed': false
      };
   }
 
@@ -31,6 +33,20 @@ class App extends React.Component {
   timeChangeHandler = (num)=>{
     this.setState({
       'time': num
+    });
+  }
+  
+  isConfigPanelDisplayedChangeHandler = (val)=>{
+    console.log(val);
+    this.setState({
+      'isConfigPanelDisplayed': val
+    });
+  }
+
+  isSummaryDisplayedChangeHandler = (val)=>{
+    console.log(val);
+    this.setState({
+      'isSummaryDisplayed': val
     });
   }
 
@@ -49,7 +65,6 @@ class App extends React.Component {
     this.setState({
       'number': this.getRandomNumber(this.state.digitCount),
       'MemorizedNumber': '',
-      'time': this.time,//[ms]
       'timeIsUp': false,
       'history': history
     });
@@ -68,6 +83,7 @@ class App extends React.Component {
   render(){
     let numberToMemorize = '';
     let memorizedNumber = '';
+    let summary = '';
 
     if(this.state.timeIsUp){
       memorizedNumber = <MemorizedNumber 
@@ -81,22 +97,31 @@ class App extends React.Component {
         timeIsUp={this.timeIsUp}
         Number={this.state.number}/>
     }
+    if(this.state.isSummaryDisplayed){
+      summary = <Summary 
+        summary={this.state.history} />
+    }
 
     return (
       <div className="App">
-        <h3 className="App-header">Numbers memorizing !</h3>
+        <h3 className="App__header">Numbers memorizing !</h3>
         {numberToMemorize}
         {memorizedNumber}
-        <ConfigPanel 
+        <ConfigPanel
           time={this.state.time}
           timeChangeHandler={this.timeChangeHandler}
           lengthChangeHandler={this.lengthChangeHandler}
-          length={this.state.digitCount}/>
-        <Summary 
-            summary={this.state.history} />
+          length={this.state.digitCount}
+          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
+          isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+          isSummaryDisplayed={this.state.isSummaryDisplayed}
+          isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
+          />
+        {summary}
       </div>
     );
   }
 }
+
 
 export default App;

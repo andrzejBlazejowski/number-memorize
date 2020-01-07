@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import NumberToMemorize from './NumberToMemorize/NumberToMemorize';
-import MemorizedNumber from './MemorizedNumber/MemorizedNumber';
-import ConfigPanel from './ConfigPanel/ConfigPanel';
-import Summary from './Summary/Summary';
+import NumberToMemorize from './components/NumberToMemorize/NumberToMemorize';
+import MemorizedNumber from './components/MemorizedNumber/MemorizedNumber';
+// import ConfigPanel from './components/ConfigPanel/ConfigPanel';
+import Header from './components/Header/Header';
+import Summary from './components/Summary/Summary';
 
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
     //this.time = 2;
     this.digitCount = 5;
 
-    this.state = { 
+    this.state = {
       'number': this.getRandomNumber(this.digitCount),
       'MemorizedNumber': '',
       'time': 2,//[seconds]
@@ -37,14 +38,12 @@ class App extends React.Component {
   }
   
   isConfigPanelDisplayedChangeHandler = (val)=>{
-    console.log(val);
     this.setState({
       'isConfigPanelDisplayed': val
     });
   }
 
   isSummaryDisplayedChangeHandler = (val)=>{
-    console.log(val);
     this.setState({
       'isSummaryDisplayed': val
     });
@@ -81,9 +80,13 @@ class App extends React.Component {
   }
 
   render(){
-    let numberToMemorize = '';
-    let memorizedNumber = '';
-    let summary = '';
+    let numberToMemorize = null;
+    let memorizedNumber = null;
+    let summary = null;
+    /*let headerClasses = 'App__header';
+    if( this.state.isConfigPanelDisplayed ){
+      headerClasses += ' App__header--opened';
+    }*/
 
     if(this.state.timeIsUp){
       memorizedNumber = <MemorizedNumber 
@@ -104,19 +107,31 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h3 className="App__header">Numbers memorizing !</h3>
+        {/* <header className={headerClasses}>
+          <h3>Numbers memorizing !</h3>
+          <ConfigPanel
+            time={this.state.time}
+            timeChangeHandler={this.timeChangeHandler}
+            lengthChangeHandler={this.lengthChangeHandler}
+            digitCount={this.state.digitCount}
+            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
+            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+            isSummaryDisplayed={this.state.isSummaryDisplayed}
+            isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
+            />
+        </header> */}
+        <Header time={this.state.time}
+            timeChangeHandler={this.timeChangeHandler}
+            lengthChangeHandler={this.lengthChangeHandler}
+            digitCount={this.state.digitCount}
+            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
+            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+            isSummaryDisplayed={this.state.isSummaryDisplayed}
+            summary={this.state.history}
+            isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}/>
         {numberToMemorize}
         {memorizedNumber}
-        <ConfigPanel
-          time={this.state.time}
-          timeChangeHandler={this.timeChangeHandler}
-          lengthChangeHandler={this.lengthChangeHandler}
-          length={this.state.digitCount}
-          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-          isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
-          isSummaryDisplayed={this.state.isSummaryDisplayed}
-          isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
-          />
+        
         {summary}
       </div>
     );

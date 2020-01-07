@@ -3,9 +3,18 @@
 }
 
 .App__header{
-  color: #98C76B;
+  color: var(--header-color);
+  background: var(--main-bg-color);
+}
+
+.App__header--opened{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 html{
-  background: #F7FFC0;
+  background: var(--main-bg-color);
 }

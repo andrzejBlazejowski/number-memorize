@@ -1,5 +1,6 @@
 import React from 'react'
 import './ConfigPanel.css';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 class ConfigPanel extends React.Component {
   onTimeChangeHandler = (event)=>{
@@ -10,8 +11,7 @@ class ConfigPanel extends React.Component {
     const value = event.target.value; 
     this.props.lengthChangeHandler(value);
   }
-  onIsConfigPanelDisplayedChangeHandler = (event)=>{
-    const value = event.target.checked; 
+  onIsConfigPanelDisplayedChangeHandler = (value)=>{
     this.props.isConfigPanelDisplayedChangeHandler(value);
   }
   onIsSummaryDisplayedChangeHandler = (event)=>{
@@ -21,8 +21,8 @@ class ConfigPanel extends React.Component {
   render() {
     let configPanel = '';
     if(this.props.isConfigPanelDisplayed){
-      configPanel = <div className="config">
-          <label className="config__label">
+      configPanel = <div className="config config--opened">
+          <label className="config__label config__label--break">
             I would like to see number to memorize with length of  
             <input 
               className="config__input"
@@ -32,7 +32,7 @@ class ConfigPanel extends React.Component {
               value={this.props.length}/>
             digits
           </label>
-          <label className="config__label">
+          <label className="config__label config__label--break">
             , and time of display number to memorize should be   
             <input 
               className="config__input"
@@ -51,27 +51,27 @@ class ConfigPanel extends React.Component {
               onChange={this.onIsSummaryDisplayedChangeHandler} 
               checked={this.props.isSummaryDisplayed}/>
           </label>
-        <label className="config__label config__label--break">
-          Show configuration panel 
-          <input 
+          <BurgerMenu 
+            onClickHandler={this.onIsConfigPanelDisplayedChangeHandler} 
+            isChecked={this.props.isConfigPanelDisplayed}/> 
+          {/* <input 
             className="config__input"
             name="isConfigPanelDisplayed" 
             type="checkbox"
             onChange={this.onIsConfigPanelDisplayedChangeHandler} 
-            checked={this.props.isConfigPanelDisplayed}/>
-        </label>
+            checked={this.props.isConfigPanelDisplayed}/> */}
         </div>
     }else{
       configPanel =  <div className="config">
-        <label className="config__label">
-          Show configuration panel 
-          <input 
+        <BurgerMenu 
+          onClickHandler={this.onIsConfigPanelDisplayedChangeHandler} 
+          isChecked={this.props.isConfigPanelDisplayed}/> 
+          {/* <input 
             className="config__input"
             name="isConfigPanelDisplayed" 
             type="checkbox"
             onChange={this.onIsConfigPanelDisplayedChangeHandler} 
-            checked={this.props.isConfigPanelDisplayed}/>
-        </label>
+            checked={this.props.isConfigPanelDisplayed}/> */}
       </div>
     }
     return configPanel

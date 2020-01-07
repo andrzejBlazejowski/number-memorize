@@ -1,0 +1,11 @@
+.number-to-memorize{
+    box-sizing: border-box;
+    height: 2rem;
+    margin:0;
+
+    font-size: 1.5rem;
+    
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--green-color);
+}

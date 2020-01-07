@@ -1,0 +1,25 @@
+.memorized-number{
+  box-sizing: border-box;
+  height: 2rem;
+  width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  
+
+  background: none;
+  text-align: center;
+  font-size: 1.5rem;
+  
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: none;
+  outline: none; 
+  color: var(--green-color);
+}
+
+.memorized-number::placeholder{
+  font-size: 1.5rem;
+  color: var(--border-color);
+}

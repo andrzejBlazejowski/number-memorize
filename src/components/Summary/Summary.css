@@ -3,11 +3,12 @@
   padding-top: 25px;
   /*padding-bottom:150px;*/
 
-  border-top: 1px solid #C7C26B;
+  border-top: 1px solid var(--border-color);
 }
 
 .summary__list{
   padding: 0;
+  margin-bottom: 0;
   max-height:28vw;
   overflow-y: scroll;
 }
@@ -19,11 +20,11 @@
 }
 
 .summary__item--correct{
-  background: #C6E8A2;
+  background: var(--success-color);
 }
 
 .summary__item--inCorrect{
-  background: #FFF3B3;
+  background: var(--fail-color);
 }
 
 .summary__item span{

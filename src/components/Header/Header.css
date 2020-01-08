@@ -1,3 +1,20 @@
+.App {
+  text-align: center;
+}
+
+.header{
+  color: var(--header-color);
+  background: var(--main-bg-color);
+}
+
+.header--opened{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .header__summary{
   position: absolute;
   top: 0;

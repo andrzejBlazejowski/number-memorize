@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+// import classes from './App.css';
 import NumberToMemorize from './components/NumberToMemorize/NumberToMemorize';
 import MemorizedNumber from './components/MemorizedNumber/MemorizedNumber';
 // import ConfigPanel from './components/ConfigPanel/ConfigPanel';

@@ -1,7 +1,7 @@
 import React from 'react'
 import ConfigPanel from './ConfigPanel/ConfigPanel';
 
-import './Header.css';
+import classes from './Header.css';
 
 class Header extends React.Component {
   onClickHandler = (event)=>{
@@ -10,7 +10,7 @@ class Header extends React.Component {
     this.props.onClickHandler( !isChecked );
   }
   render() {
-    let headerClasses = 'App__header';
+    let headerClasses = classes.header;
     let headerBgPrefix = 'linear-gradient(90deg, ';
     let headerBgSuffix = ')';
     let headerBg = headerBgPrefix + this.props.summary.map( (el, i, arr)=>{
@@ -23,13 +23,13 @@ class Header extends React.Component {
       'background': headerBg
     };
     if( this.props.isConfigPanelDisplayed ){
-      headerClasses += ' App__header--opened';
+      headerClasses += " "+ classes['header--opened'];
     }
-    
+    debugger;
 
 
     return <header className={headerClasses}>
-      <div style={headerStyles} className='header__summary'></div>
+      <div style={headerStyles} className={classes.header__summary}></div>
       <h3>Numbers memorizing !</h3>
       <ConfigPanel
         time={this.props.time}

@@ -16,6 +16,10 @@ body {
   --fail-color: #FFF3B3;
 }
 
+html{
+  background: var(--main-bg-color);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

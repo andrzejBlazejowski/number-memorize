@@ -2,6 +2,7 @@ import React from 'react'
 import NumberToMemorize from './NumberToMemorize/NumberToMemorize';
 import MemorizedNumber from './MemorizedNumber/MemorizedNumber';
 import Summary from './Summary/Summary';
+import FlowControls from './FlowControls/FlowControls';
 
 import classes from './Content.module.scss';
 
@@ -27,9 +28,10 @@ class content extends React.Component {
       summary = <Summary 
         summary={this.props.history} />
     }
-    return <main>
+    return <main className={classes.content}>
       {numberToMemorize}
       {memorizedNumber}
+      <FlowControls/>
       {summary}
     </main>
   }

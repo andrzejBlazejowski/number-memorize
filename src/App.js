@@ -1,11 +1,8 @@
 import React from 'react';
-import classes from './App.module.scss';
-import NumberToMemorize from './components/Content/NumberToMemorize/NumberToMemorize';
-import MemorizedNumber from './components/Content/MemorizedNumber/MemorizedNumber';
 import Header from './components/Header/Header';
-import Summary from './components/Content/Summary/Summary';
 import Content from './components/Content/Content';
 
+import classes from './App.module.scss';
 
 class App extends React.Component {
   constructor(props){
@@ -121,6 +118,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;

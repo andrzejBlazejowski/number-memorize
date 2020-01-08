@@ -1,8 +1,7 @@
 import React from 'react';
-// import classes from './App.css';
+import classes from './App.module.scss';
 import NumberToMemorize from './components/NumberToMemorize/NumberToMemorize';
 import MemorizedNumber from './components/MemorizedNumber/MemorizedNumber';
-// import ConfigPanel from './components/ConfigPanel/ConfigPanel';
 import Header from './components/Header/Header';
 import Summary from './components/Summary/Summary';
 
@@ -10,13 +9,15 @@ import Summary from './components/Summary/Summary';
 class App extends React.Component {
   constructor(props){
     super(props);
-    //this.time = 2;
     this.digitCount = 5;
 
     this.state = {
+      'isAppStarted': false,
       'number': this.getRandomNumber(this.digitCount),
       'MemorizedNumber': '',
       'time': 2,//[seconds]
+      'refreshMaxCount': 3,
+      'refreshCount': 0,
       'timeIsUp': false,
       'history': [],
       'digitCount': this.digitCount,
@@ -37,9 +38,10 @@ class App extends React.Component {
     });
   }
   
-  isConfigPanelDisplayedChangeHandler = (val)=>{
+  isConfigPanelDisplayedChangeHandler = ()=>{
+    let isDisplayed = this.state.isConfigPanelDisplayed;
     this.setState({
-      'isConfigPanelDisplayed': val
+      'isConfigPanelDisplayed': !isDisplayed
     });
   }
 
@@ -69,6 +71,17 @@ class App extends React.Component {
     });
   }
 
+  refreshMemorizedNumber = () =>{
+    if( this.state.refreshCount < this.state.refreshMaxCount ){
+      this.setState({
+        'number': this.getRandomNumber(this.state.digitCount),
+        'MemorizedNumber': '',
+        'timeIsUp': false,
+        'refreshCount': this.state.refreshCount+1
+      });
+    }
+  }
+
   getRandomNumber=( length )=>{
     return Math.round(Math.random()*(Math.pow(10,length)))
   }
@@ -83,10 +96,6 @@ class App extends React.Component {
     let numberToMemorize = null;
     let memorizedNumber = null;
     let summary = null;
-    /*let headerClasses = 'App__header';
-    if( this.state.isConfigPanelDisplayed ){
-      headerClasses += ' App__header--opened';
-    }*/
 
     if(this.state.timeIsUp){
       memorizedNumber = <MemorizedNumber 
@@ -104,22 +113,8 @@ class App extends React.Component {
       summary = <Summary 
         summary={this.state.history} />
     }
-
     return (
-      <div className="App">
-        {/* <header className={headerClasses}>
-          <h3>Numbers memorizing !</h3>
-          <ConfigPanel
-            time={this.state.time}
-            timeChangeHandler={this.timeChangeHandler}
-            lengthChangeHandler={this.lengthChangeHandler}
-            digitCount={this.state.digitCount}
-            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
-            isSummaryDisplayed={this.state.isSummaryDisplayed}
-            isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
-            />
-        </header> */}
+      <div className={classes.App}>
         <Header time={this.state.time}
             timeChangeHandler={this.timeChangeHandler}
             lengthChangeHandler={this.lengthChangeHandler}

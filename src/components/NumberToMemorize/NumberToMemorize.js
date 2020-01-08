@@ -1,5 +1,5 @@
 import React from 'react'
-import './NumberToMemorize.css';
+import classes from './NumberToMemorize.module.scss';
 
 class NumberToMemorize extends React.Component {
   constructor(props){
@@ -11,7 +11,7 @@ class NumberToMemorize extends React.Component {
   }
   render() {
     return <p 
-      className="number-to-memorize">
+      className={classes["number-to-memorize"]}>
       {this.props.Number}
     </p>;
   }

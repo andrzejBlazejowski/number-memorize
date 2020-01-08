@@ -17,9 +17,9 @@
   border-radius: none;
   outline: none; 
   color: var(--green-color);
-}
 
-.memorized-number::placeholder{
-  font-size: 1.5rem;
-  color: var(--border-color);
+  &::placeholder{
+    font-size: 1.5rem;
+    color: var(--border-color);
+  }
 }

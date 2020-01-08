@@ -1,0 +1,32 @@
+.summary{
+  margin-top: 25px;
+  padding-top: 25px;
+  /*padding-bottom:150px;*/
+
+  border-top: 1px solid var(--border-color);
+
+  &__list{
+    padding: 0;
+    margin-bottom: 0;
+    max-height:28vw;
+    overflow-y: scroll;
+  }
+
+  &__item{
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+
+    &--correct{
+      background: var(--success-color);
+    }
+
+    &--inCorrect{
+      background: var(--fail-color);
+    }
+    
+    span{
+      padding: 0 10px;
+    }
+  }
+}

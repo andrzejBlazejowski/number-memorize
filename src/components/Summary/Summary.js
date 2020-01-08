@@ -1,5 +1,5 @@
 import React from 'react'
-import './Summary.css';
+import classes from './Summary.module.scss';
 
 class Summary extends React.Component {
   constructor( props ){
@@ -36,15 +36,15 @@ class Summary extends React.Component {
 
   getSummaryItems = (items) => items.reverse().map((item)=><li key={item.number} 
         className={item.number===item.MemorizedNumber?
-        'summary__item summary__item--correct'
-        :'summary__item summary__item--inCorrect'}>
+          classes.summary__item + ' '+ classes['summary__item--correct']
+        : classes.summary__item + ' '+ classes['summary__item--inCorrect']}>
         <span>{item.number}</span>
-        <span>{item.MemorizedNumber?item.MemorizedNumber:'empty'}</span>
+        <span>{item.MemorizedNumber?item.MemorizedNumber:classes.empty}</span>
       </li>);
 
   render() {
-    return <div className="summary">
-        <div className="summary__header">
+    return <div className={classes.summary}>
+        <div className={classes.summary__header}>
           <span>You have submited {this.count} numbers,</span>
           <span> {this.correctCount} was correct,</span>
           <span> {this.incorrectCount} was incorrect</span>
@@ -54,7 +54,7 @@ class Summary extends React.Component {
           <span> {this.incorrectPercentages}% of incorrect answers,</span>
           <span> and {this.emptyPercentages}% of empty answers</span>
         </div>
-        <ul className="summary__list">
+        <ul className={classes.summary__list}>
           {this.items}
         </ul>
       </div>

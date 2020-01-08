@@ -1,5 +1,5 @@
 import React from 'react'
-import './MemorizedNumber.css';
+import classes from './MemorizedNumber.module.scss';
 
 class MemorizedNumber extends React.Component {
   constructor(props){
@@ -26,7 +26,7 @@ class MemorizedNumber extends React.Component {
       ref={this.memorizedInput}
       placeholder="Type in Memorized Number" 
       onKeyPress={this.onKeyPressHandler} 
-      className="memorized-number" 
+      className={classes["memorized-number"]}
       onChange={this.onChangeHandler}
       type="text"
       value={this.props.MemorizedNumber}

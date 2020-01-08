@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './App.module.scss';
-import NumberToMemorize from './components/NumberToMemorize/NumberToMemorize';
-import MemorizedNumber from './components/MemorizedNumber/MemorizedNumber';
+import NumberToMemorize from './components/Content/NumberToMemorize/NumberToMemorize';
+import MemorizedNumber from './components/Content/MemorizedNumber/MemorizedNumber';
 import Header from './components/Header/Header';
-import Summary from './components/Summary/Summary';
+import Summary from './components/Content/Summary/Summary';
+import Content from './components/Content/Content';
 
 
 class App extends React.Component {
@@ -46,8 +47,9 @@ class App extends React.Component {
   }
 
   isSummaryDisplayedChangeHandler = (val)=>{
+    let isDisplayed = this.state.isSummaryDisplayed;
     this.setState({
-      'isSummaryDisplayed': val
+      'isSummaryDisplayed': !isDisplayed
     });
   }
 
@@ -93,26 +95,6 @@ class App extends React.Component {
   }
 
   render(){
-    let numberToMemorize = null;
-    let memorizedNumber = null;
-    let summary = null;
-
-    if(this.state.timeIsUp){
-      memorizedNumber = <MemorizedNumber 
-        Number={this.state.number}
-        checkHandler={this.checkMemorizedNumber}
-        changeHandler={this.changeMemorizedNumber}
-        MemorizedNumber={this.state.MemorizedNumber}/>
-    }else{
-      numberToMemorize = <NumberToMemorize 
-        time={this.state.time}
-        timeIsUp={this.timeIsUp}
-        Number={this.state.number}/>
-    }
-    if(this.state.isSummaryDisplayed){
-      summary = <Summary 
-        summary={this.state.history} />
-    }
     return (
       <div className={classes.App}>
         <Header time={this.state.time}
@@ -124,10 +106,17 @@ class App extends React.Component {
             isSummaryDisplayed={this.state.isSummaryDisplayed}
             summary={this.state.history}
             isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}/>
-        {numberToMemorize}
-        {memorizedNumber}
-        
-        {summary}
+        <Content
+        timeIsUpHandler={this.timeIsUp}
+        timeIsUp={this.state.timeIsUp}
+        number={this.state.number}
+        checkMemorizedNumber={this.checkMemorizedNumber}
+        changeMemorizedNumber={this.changeMemorizedNumber}
+        MemorizedNumber={this.state.MemorizedNumber}
+        time={this.state.time}
+        isSummaryDisplayed={this.state.isSummaryDisplayed}
+        history={this.state.history}
+        />
       </div>
     );
   }

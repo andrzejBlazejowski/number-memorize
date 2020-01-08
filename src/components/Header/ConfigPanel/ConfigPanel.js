@@ -12,10 +12,6 @@ class ConfigPanel extends React.Component {
     const value = event.target.value; 
     this.props.lengthChangeHandler(value);
   }
-  onIsSummaryDisplayedChangeHandler = (event)=>{
-    const value = event.target.checked; 
-    this.props.isSummaryDisplayedChangeHandler(value);
-  }
   render() {
     let configPanel = '';
     if(this.props.isConfigPanelDisplayed){
@@ -46,7 +42,7 @@ class ConfigPanel extends React.Component {
               className={classes.config__input}
               name="isSummaryDisplayed" 
               type="checkbox"
-              onChange={this.onIsSummaryDisplayedChangeHandler} 
+              onChange={this.props.isSummaryDisplayedChangeHandler} 
               checked={this.props.isSummaryDisplayed}/>
           </label>
           <BurgerMenu 

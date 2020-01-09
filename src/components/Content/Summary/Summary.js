@@ -19,27 +19,27 @@ class Summary extends React.Component {
     this.count = this.history.length;
 
     this.correctCount = this.history.reduce( (previousValue, currentValue) =>  
-      previousValue + (currentValue.number === currentValue.MemorizedNumber?1:0),0);
+      previousValue + (currentValue.number === currentValue.memorizedNumber?1:0),0);
     this.correctPercentages = Math.floor(this.correctCount*100/this.count);
     this.correctPercentages = this.correctPercentages? this.correctPercentages:0;
 
     this.incorrectCount = this.history.reduce( (previousValue, currentValue) =>  
-      previousValue + (currentValue.number !== currentValue.MemorizedNumber && currentValue.MemorizedNumber?1:0),0);
+      previousValue + (currentValue.number !== currentValue.memorizedNumber && currentValue.memorizedNumber?1:0),0);
     this.incorrectPercentages = Math.floor(this.incorrectCount*100/this.count);
     this.incorrectPercentages = this.incorrectPercentages? this.incorrectPercentages:0;
 
     this.emptyCount =  this.history.reduce( (previousValue, currentValue) =>  
-     previousValue + (!currentValue.MemorizedNumber?1:0),0);
+     previousValue + (!currentValue.memorizedNumber?1:0),0);
     this.emptyPercentages = Math.floor(this.emptyCount*100/this.count);
     this.emptyPercentages = this.emptyPercentages? this.emptyPercentages:0;
   }
 
   getSummaryItems = (items) => items.reverse().map((item)=><li key={item.number} 
-        className={item.number===item.MemorizedNumber?
+        className={item.number===item.memorizedNumber?
           classes.summary__item + ' '+ classes['summary__item--correct']
         : classes.summary__item + ' '+ classes['summary__item--inCorrect']}>
         <span>{item.number}</span>
-        <span>{item.MemorizedNumber?item.MemorizedNumber:classes.empty}</span>
+        <span>{item.memorizedNumber?item.memorizedNumber:classes.empty}</span>
       </li>);
 
   render() {

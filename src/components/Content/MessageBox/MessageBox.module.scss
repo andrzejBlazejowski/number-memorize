@@ -1,0 +1,33 @@
+.messageBox{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+
+  color: var(--border-color);
+  text-transform: uppercase;
+
+  border-top: solid 1px var(--border-color);
+  border-bottom: solid 1px var(--border-color);
+  background: var(--fail-color);
+  opacity: 0%;
+  
+  animation-duration: 4s;
+  animation-name: hide;
+
+}
+
+@keyframes hide {
+  from {
+    opacity: 0%;
+  }
+  15% {
+    opacity: 100%;
+  }
+  85% {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}

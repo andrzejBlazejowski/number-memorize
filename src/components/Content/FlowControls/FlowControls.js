@@ -8,12 +8,26 @@ function FlowControls(props) {
   }
   return (
     <div className={classes.flowControls}>
-      { props.refreshMaxCount > props.refreshCount && <button 
-        className={refreshClasses.join(' ')} 
-        onClick={props.refreshClickHandler} 
+      {props.refreshMaxCount > props.refreshCount && <button
+        className={refreshClasses.join(' ')}
+        onClick={props.refreshClickHandler}
         >refresh</button>}
-      <button className={[classes.button, classes.play].join(' ')} >play</button>
-      <button className={[classes.button, classes.pause].join(' ')} >pause</button>
+      { ! props.isAppStarted && <button
+          className={[classes.button, classes.play].join(' ')}
+          onClick={props.playMemorizedNumber}
+        >play</button>}
+      {/*
+      i need to rethink what "PAUSE" button should do......
+      (props.isAppStarted ?
+        <button
+          className={[classes.button, classes.pause].join(' ')}
+          onClick={props.stopMemorizedNumber}
+        >pause</button>
+      :<button
+          className={[classes.button, classes.play].join(' ')}
+          onClick={props.playMemorizedNumber}
+        >play</button>
+      )*/}
     </div>
   )
 }

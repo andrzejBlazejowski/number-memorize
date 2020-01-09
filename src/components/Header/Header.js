@@ -11,7 +11,7 @@ function Header( props ) {
     .summary
     .map((el, i, arr) => {
       let cellColor = 'var(--success-color)';
-      if(el.MemorizedNumber !== el.number){
+      if(el.memorizedNumber !== el.number){
         cellColor = 'var(--fail-color)';
       }
       return cellColor + ' ' + 

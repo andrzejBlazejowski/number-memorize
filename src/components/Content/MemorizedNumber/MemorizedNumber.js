@@ -9,10 +9,6 @@ class MemorizedNumber extends React.Component {
   componentDidMount =()=>{
     this.memorizedInput.current.focus();
   }
-  // onChangeHandler = event => {
-
-  //   this.props.changeHandler(value);
-  // }
   onKeyPressHandler = event => {
     if( event.charCode === 13 ){
       this.props.checkHandler();
@@ -26,7 +22,7 @@ class MemorizedNumber extends React.Component {
       className={classes["memorized-number"]}
       onChange={this.props.changeHandler}
       type="number"
-      value={this.props.MemorizedNumber}
+      value={this.props.memorizedNumber}
     />;
   }
 }

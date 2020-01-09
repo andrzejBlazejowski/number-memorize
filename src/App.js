@@ -7,18 +7,16 @@ import classes from './App.module.scss';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.digitCount = 5;
-
     this.state = {
       'isAppStarted': false,
-      'number': this.getRandomNumber(this.digitCount),
-      'MemorizedNumber': '',
+      'number': 0,
+      'memorizedNumber': '',
       'time': 2,//[seconds]
       'refreshMaxCount': 3,
       'refreshCount': 0,
       'timeIsUp': false,
       'history': [],
-      'digitCount': this.digitCount,
+      'digitCount': 5,
       'isConfigPanelDisplayed': false,
       'isSummaryDisplayed': false
      };
@@ -27,9 +25,8 @@ class App extends React.Component {
   changeMemorizedNumber = (ev) => {
     const target = ev.target;
     const num = target.value;
-
     this.setState({
-      'MemorizedNumber': num
+      'memorizedNumber': num
     });
   }
 
@@ -59,14 +56,14 @@ class App extends React.Component {
   }
 
   checkMemorizedNumber = () => {
-    let history = this.state.history;
+    let history = [...this.state.history];
     history.push({
-      "MemorizedNumber": parseInt(this.state.MemorizedNumber),
+      "memorizedNumber": parseInt(this.state.memorizedNumber),
       "number": parseInt(this.state.number)
     });
     this.setState({
       'number': this.getRandomNumber(this.state.digitCount),
-      'MemorizedNumber': '',
+      'memorizedNumber': '',
       'timeIsUp': false,
       'history': history
     });
@@ -76,9 +73,28 @@ class App extends React.Component {
     if( this.state.refreshCount < this.state.refreshMaxCount ){
       this.setState({
         'number': this.getRandomNumber(this.state.digitCount),
-        'MemorizedNumber': '',
-        'timeIsUp': false,
+        'memorizedNumber': '',
+        'timeIsUp': false, 
         'refreshCount': this.state.refreshCount+1
+      });
+    }
+  }
+
+  playMemorizedNumber = () =>{
+    if( this.state.refreshCount < this.state.refreshMaxCount ){
+      this.setState({
+        'number': this.getRandomNumber(this.state.digitCount),
+        'memorizedNumber': '',
+        'timeIsUp': false,
+        'isAppStarted': true
+      });
+    }
+  }
+
+  stopMemorizedNumber = () =>{
+    if( this.state.refreshCount < this.state.refreshMaxCount ){
+      this.setState({
+        'isAppStarted': false
       });
     }
   }
@@ -113,13 +129,16 @@ class App extends React.Component {
           number={this.state.number}
           checkMemorizedNumber={this.checkMemorizedNumber}
           changeMemorizedNumber={this.changeMemorizedNumber}
-          MemorizedNumber={this.state.MemorizedNumber}
+          memorizedNumber={this.state.memorizedNumber}
           time={this.state.time}
           isSummaryDisplayed={this.state.isSummaryDisplayed}
           history={this.state.history}
           refreshClickHandler={this.refreshMemorizedNumber}
           refreshMaxCount={this.state.refreshMaxCount}
           refreshCount={this.state.refreshCount}
+          isAppStarted={this.state.isAppStarted}
+          playMemorizedNumber={this.playMemorizedNumber}
+          stopMemorizedNumber={this.stopMemorizedNumber}
         />
       </div>
     );

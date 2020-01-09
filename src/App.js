@@ -24,22 +24,24 @@ class App extends React.Component {
      };
   }
 
-  changeMemorizedNumber = (num) => {
+  changeMemorizedNumber = (ev) => {
+    const target = ev.target;
+    const num = target.value;
+
     this.setState({
       'MemorizedNumber': num
     });
   }
 
-  timeChangeHandler = (num)=>{
+  timeChangeHandler = (ev)=>{
     this.setState({
-      'time': num
+      'time': parseFloat(ev.target.value)
     });
   }
   
   isConfigPanelDisplayedChangeHandler = ()=>{
-    let isDisplayed = this.state.isConfigPanelDisplayed;
     this.setState({
-      'isConfigPanelDisplayed': !isDisplayed
+      'isConfigPanelDisplayed': !this.state.isConfigPanelDisplayed
     });
   }
 
@@ -50,9 +52,9 @@ class App extends React.Component {
     });
   }
 
-  lengthChangeHandler = (num)=>{
+  lengthChangeHandler = (ev)=>{
     this.setState({
-      'digitCount': num
+      'digitCount': ev.target.value
     });
   }
 
@@ -94,7 +96,8 @@ class App extends React.Component {
   render(){
     return (
       <div className={classes.App}>
-        <Header time={this.state.time}
+        <Header 
+          time={this.state.time}
           timeChangeHandler={this.timeChangeHandler}
           lengthChangeHandler={this.lengthChangeHandler}
           digitCount={this.state.digitCount}
@@ -114,6 +117,9 @@ class App extends React.Component {
           time={this.state.time}
           isSummaryDisplayed={this.state.isSummaryDisplayed}
           history={this.state.history}
+          refreshClickHandler={this.refreshMemorizedNumber}
+          refreshMaxCount={this.state.refreshMaxCount}
+          refreshCount={this.state.refreshCount}
         />
       </div>
     );

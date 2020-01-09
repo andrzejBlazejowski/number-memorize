@@ -6,35 +6,23 @@ import FlowControls from './FlowControls/FlowControls';
 
 import classes from './Content.module.scss';
 
-class content extends React.Component {
+class Content extends React.Component {
   render() {
-    let numberToMemorize = null;
-    let memorizedNumber = null;
-    let summary = null;
-
-    if(this.props.timeIsUp){
-      memorizedNumber = <MemorizedNumber 
-        Number={this.props.number}
-        checkHandler={this.props.checkMemorizedNumber}
-        changeHandler={this.props.changeMemorizedNumber}
-        MemorizedNumber={this.props.MemorizedNumber}/>
-    }else{
-      numberToMemorize = <NumberToMemorize 
-        time={this.props.time}
-        timeIsUp={this.props.timeIsUpHandler}
-        Number={this.props.number}/>
-    }
-    if(this.props.isSummaryDisplayed){
-      summary = <Summary 
-        summary={this.props.history} />
-    }
     return <main className={classes.content}>
-      {numberToMemorize}
-      {memorizedNumber}
+      {( this.props.timeIsUp ? <MemorizedNumber 
+          Number={this.props.number}
+          checkHandler={this.props.checkMemorizedNumber}
+          changeHandler={this.props.changeMemorizedNumber}
+          MemorizedNumber={this.props.MemorizedNumber}/> 
+        : <NumberToMemorize 
+            time={this.props.time}
+            timeIsUp={this.props.timeIsUpHandler}
+            Number={this.props.number}/>)}
       <FlowControls/>
-      {summary}
+      {this.props.isSummaryDisplayed && <Summary 
+        summary={this.props.history} /> }
     </main>
   }
 }
 
-export default content;
+export default Content;

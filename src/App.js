@@ -95,24 +95,25 @@ class App extends React.Component {
     return (
       <div className={classes.App}>
         <Header time={this.state.time}
-            timeChangeHandler={this.timeChangeHandler}
-            lengthChangeHandler={this.lengthChangeHandler}
-            digitCount={this.state.digitCount}
-            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
-            isSummaryDisplayed={this.state.isSummaryDisplayed}
-            summary={this.state.history}
-            isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}/>
+          timeChangeHandler={this.timeChangeHandler}
+          lengthChangeHandler={this.lengthChangeHandler}
+          digitCount={this.state.digitCount}
+          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
+          isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+          isSummaryDisplayed={this.state.isSummaryDisplayed}
+          summary={this.state.history}
+          isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
+        />
         <Content
-        timeIsUpHandler={this.timeIsUp}
-        timeIsUp={this.state.timeIsUp}
-        number={this.state.number}
-        checkMemorizedNumber={this.checkMemorizedNumber}
-        changeMemorizedNumber={this.changeMemorizedNumber}
-        MemorizedNumber={this.state.MemorizedNumber}
-        time={this.state.time}
-        isSummaryDisplayed={this.state.isSummaryDisplayed}
-        history={this.state.history}
+          timeIsUpHandler={this.timeIsUp}
+          timeIsUp={this.state.timeIsUp}
+          number={this.state.number}
+          checkMemorizedNumber={this.checkMemorizedNumber}
+          changeMemorizedNumber={this.changeMemorizedNumber}
+          MemorizedNumber={this.state.MemorizedNumber}
+          time={this.state.time}
+          isSummaryDisplayed={this.state.isSummaryDisplayed}
+          history={this.state.history}
         />
       </div>
     );

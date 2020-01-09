@@ -1,15 +1,18 @@
 import React from 'react'
-
 import classes from './FlowControls.module.scss';
 
-class flowControls extends React.Component {
+class FlowControls extends React.Component {
   render() {
-    return <div className={classes['flow-controls']}>
-      <button className={classes['flow-controls__button flow-controls__button--refresh']} type="button">refresh</button>
-      <button className={classes['flow-controls__button flow-controls__button--play']} type="button">play</button>
-      <button className={classes['flow-controls__button flow-controls__button--pause']} type="button">pause</button>
+    let refreshClasses = [classes.button, classes.refresh];
+    if( this.props.disabled ){
+      refreshClasses.push(classes.disabled);
+    }
+    return <div className={classes.flowControls}>
+      <button className={refreshClasses.join(' ')} >refresh</button>
+      <button className={[classes.button, classes.play].join(' ')} >play</button>
+      <button className={[classes.button, classes.pause].join(' ')} >pause</button>
     </div>
   }
 }
 
-export default flowControls;
+export default FlowControls;

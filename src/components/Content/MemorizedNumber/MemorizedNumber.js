@@ -4,19 +4,17 @@ import classes from './MemorizedNumber.module.scss';
 class MemorizedNumber extends React.Component {
   constructor(props){
     super(props);
-    this.onKeyPressHandler = this.onKeyPressHandler.bind(this);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.memorizedInput = React.createRef();
   }
   componentDidMount =()=>{
     this.memorizedInput.current.focus();
   }
-  onChangeHandler (event){
+  onChangeHandler = event => {
     const target = event.target;
     const value = target.value;
     this.props.changeHandler(value);
   }
-  onKeyPressHandler (event){
+  onKeyPressHandler = event => {
     if( event.charCode === 13 ){
       this.props.checkHandler();
     }

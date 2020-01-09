@@ -1,0 +1,41 @@
+@import './../../../variables.scss';
+
+@mixin addButtonHover($color, $bgColor) {
+  &:hover{
+    border: solid 1px $color;
+    color: $color, 10%;
+    @if $bgColor != "" {
+      background: $bgColor;
+    }
+  }
+}
+
+@mixin addButtonSpecialColors($name, $color) {
+  &.#{$name}{
+    border: solid 1px $color;
+    color: $color;
+    
+    @include addButtonHover( darken($color, 10%), "" );
+  }
+}
+
+.flowControls{
+  margin-top: 50px;
+}
+
+.button{
+  margin: 10px;
+  padding: 10px;
+
+  background: none;
+  border: solid 1px $border-color;
+  color: $border-color;
+  cursor: pointer;
+
+  text-transform: uppercase;
+
+  @include addButtonHover( darken($border-color, 10%), darken($main-bg-color, 2%) );
+
+  @include addButtonSpecialColors("play", $green-color);
+  @include addButtonSpecialColors("pause", darken($fail-color, 40%));
+}

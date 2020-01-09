@@ -1,15 +1,17 @@
+@import './../../../variables.scss';
+
 .messageBox{
   margin-top: 15px;
   margin-bottom: 15px;
   padding-top: 15px;
   padding-bottom: 20px;
 
-  color: var(--border-color);
+  color: $border-color;
   text-transform: uppercase;
 
-  border-top: solid 1px var(--border-color);
-  border-bottom: solid 1px var(--border-color);
-  background: var(--fail-color);
+  border-top: solid 1px $border-color;
+  border-bottom: solid 1px $border-color;
+  background: $fail-color;
   opacity: 0%;
   
   animation-duration: 4s;

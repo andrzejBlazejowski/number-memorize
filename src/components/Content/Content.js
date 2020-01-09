@@ -56,7 +56,6 @@ function Content(props) {
       stopMemorizedNumber={props.stopMemorizedNumber}
     />
     { message && <MessageBox>{message}</MessageBox>}
-    <MessageBox>messag</MessageBox>
     {props.isSummaryDisplayed && <Summary 
       summary={props.history} /> }
   </main>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 
 import classes from './Header.module.scss';
+import Nav from './Nav/Nav';
 
 function Header( props ) {
   let headerClasses = classes.header + ' ';
@@ -30,20 +31,11 @@ function Header( props ) {
   }
   return <header className={headerClasses}>
     <div style={headerStyles} className={classes.header__summary}></div>
-    <h3>Numbers memorizing !</h3>
-    {/* <ConfigPanel
-      time={props.time}
-      timeChangeHandler={props.timeChangeHandler}
-      lengthChangeHandler={props.lengthChangeHandler}
-      length={props.digitCount}
-      isConfigPanelDisplayed={props.isConfigPanelDisplayed}
-      IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}
-      isSummaryDisplayed={props.isSummaryDisplayed}
-      isSummaryDisplayedChangeHandler={props.isSummaryDisplayedChangeHandler}/> */}
-      
+    <h3>Numbers memorizing !</h3>         
     <BurgerMenu 
       onClickHandler={props.isConfigPanelDisplayedChangeHandler} 
       isChecked={props.isConfigPanelDisplayed}/>
+    {props.isConfigPanelDisplayed && <Nav/> }
   </header>
 
 }

@@ -1,4 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import NumberToMemorize from './NumberToMemorize/NumberToMemorize';
 import MemorizedNumber from './MemorizedNumber/MemorizedNumber';
 import Summary from './Summary/Summary';
@@ -18,6 +23,7 @@ function Content(props) {
       break;
     }
   }
+
   switch(correctCount){
     case 5 :
       message = 'Well done. Keep Going!';
@@ -37,37 +43,45 @@ function Content(props) {
     default:
       message = '';
   }
-
   return <main className={classes.content}>
-    { (props.isAppStarted && ( props.timeIsUp ? <MemorizedNumber 
-        number={props.number}
-        checkHandler={props.checkMemorizedNumber}
-        changeHandler={props.changeMemorizedNumber}
-        memorizedNumber={props.memorizedNumber}/> 
-    :<NumberToMemorize 
-        time={props.time}
-        timeIsUp={props.timeIsUpHandler}
-        number={props.number}/>) ) }
-    <FlowControls
-      refreshClickHandler={props.refreshClickHandler}
-      refreshMaxCount={props.refreshMaxCount}
-      playMemorizedNumber={props.playMemorizedNumber}
-      refreshCount={props.refreshCount}
-      isAppStarted={props.isAppStarted}
-      stopMemorizedNumber={props.stopMemorizedNumber}
-    />
+    <Switch>
+      <Route exact path="/">
+        <Redirect to="/play" />
+      </Route>
+      <Route path="/play">
+        { ( props.isAppStarted && ( props.timeIsUp ? <MemorizedNumber 
+            number={props.number}
+            checkHandler={props.checkMemorizedNumber}
+            changeHandler={props.changeMemorizedNumber}
+            memorizedNumber={props.memorizedNumber}/> 
+        :<NumberToMemorize 
+            time={props.time}
+            timeIsUp={props.timeIsUpHandler}
+            number={props.number}/> ) ) }
+        <FlowControls
+          refreshClickHandler={props.refreshClickHandler}
+          refreshMaxCount={props.refreshMaxCount}
+          playMemorizedNumber={props.playMemorizedNumber}
+          refreshCount={props.refreshCount}
+          isAppStarted={props.isAppStarted}
+          stopMemorizedNumber={props.stopMemorizedNumber}
+        />
+      </Route>
+      <Route path="/summary">
+        <Summary 
+          summary={props.history} />
+      </Route>
+      <Route path="/settings">
+        <ConfigPanel
+          time={props.time}
+          timeChangeHandler={props.timeChangeHandler}
+          lengthChangeHandler={props.lengthChangeHandler}
+          length={props.length}
+          isConfigPanelDisplayed={props.isConfigPanelDisplayed}
+          IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}/>
+      </Route>
+    </Switch>
     { message && <MessageBox>{message}</MessageBox>}
-    {props.isSummaryDisplayed && <Summary 
-      summary={props.history} /> }
-    { props.isConfigPanelDisplayed && <ConfigPanel
-      time={props.time}
-      timeChangeHandler={props.timeChangeHandler}
-      lengthChangeHandler={props.lengthChangeHandler}
-      length={props.digitCount}
-      isConfigPanelDisplayed={props.isConfigPanelDisplayed}
-      IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}
-      isSummaryDisplayed={props.isSummaryDisplayed}
-      isSummaryDisplayedChangeHandler={props.isSummaryDisplayedChangeHandler}/>}
   </main>
 }
 

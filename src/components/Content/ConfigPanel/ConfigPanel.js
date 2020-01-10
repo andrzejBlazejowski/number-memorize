@@ -9,7 +9,6 @@ function ConfigPanel (props){
   }
   
   return <div className={configClasses}>
-    { props.isConfigPanelDisplayed &&<>
       <label className={classes.config__label + ' ' + classes['config__label--break']}>
         I would like to see number to memorize with length of  
         <input 
@@ -30,16 +29,6 @@ function ConfigPanel (props){
           value={props.time}/>
           seconds
       </label>
-      <label className={classes.config__label + ' ' + classes['config__label--break']}>
-        Show summary 
-        <input 
-          className={classes.config__input}
-          name="isSummaryDisplayed" 
-          type="checkbox"
-          onChange={props.isSummaryDisplayedChangeHandler} 
-          checked={props.isSummaryDisplayed}/>
-      </label></>
-    }
   </div>
 }
 

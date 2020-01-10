@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  withRouter
+} from "react-router-dom";
 import Header from './components/Header/Header';
 import Content from './components/Content/Content';
 
@@ -17,8 +20,7 @@ class App extends React.Component {
       'timeIsUp': false,
       'history': [],
       'digitCount': 5,
-      'isConfigPanelDisplayed': false,
-      'isSummaryDisplayed': false
+      'isConfigPanelDisplayed': false
      };
   }
 
@@ -39,13 +41,6 @@ class App extends React.Component {
   isConfigPanelDisplayedChangeHandler = ()=>{
     this.setState({
       'isConfigPanelDisplayed': !this.state.isConfigPanelDisplayed
-    });
-  }
-
-  isSummaryDisplayedChangeHandler = (val)=>{
-    let isDisplayed = this.state.isSummaryDisplayed;
-    this.setState({
-      'isSummaryDisplayed': !isDisplayed
     });
   }
 
@@ -109,41 +104,45 @@ class App extends React.Component {
     });
   }
 
+  componentDidUpdate( prevProps ){
+    if( this.props.location.pathname !== prevProps.location.pathname ){
+      this.setState({
+        'isConfigPanelDisplayed': false
+      });
+    }
+  }
+
   render(){
     return (
-      <div className={classes.App}>
-        <Header 
-          time={this.state.time}
-          timeChangeHandler={this.timeChangeHandler}
-          lengthChangeHandler={this.lengthChangeHandler}
-          digitCount={this.state.digitCount}
-          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-          isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
-          isSummaryDisplayed={this.state.isSummaryDisplayed}
-          summary={this.state.history}
-          isSummaryDisplayedChangeHandler = {this.isSummaryDisplayedChangeHandler}
-        />
-        <Content
-          timeIsUpHandler={this.timeIsUp}
-          timeIsUp={this.state.timeIsUp}
-          number={this.state.number}
-          checkMemorizedNumber={this.checkMemorizedNumber}
-          changeMemorizedNumber={this.changeMemorizedNumber}
-          memorizedNumber={this.state.memorizedNumber}
-          time={this.state.time}
-          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-          isSummaryDisplayed={this.state.isSummaryDisplayed}
-          history={this.state.history}
-          refreshClickHandler={this.refreshMemorizedNumber}
-          refreshMaxCount={this.state.refreshMaxCount}
-          refreshCount={this.state.refreshCount}
-          isAppStarted={this.state.isAppStarted}
-          playMemorizedNumber={this.playMemorizedNumber}
-          stopMemorizedNumber={this.stopMemorizedNumber}
-        />
-      </div>
+        <div className={classes.App}>
+          <Header
+            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
+            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+            isSummaryDisplayed={this.state.isSummaryDisplayed}
+            summary={this.state.history}
+          />
+          <Content
+            timeIsUpHandler={this.timeIsUp}
+            timeIsUp={this.state.timeIsUp}
+            number={this.state.number}
+            checkMemorizedNumber={this.checkMemorizedNumber}
+            changeMemorizedNumber={this.changeMemorizedNumber}
+            memorizedNumber={this.state.memorizedNumber}
+            time={this.state.time}
+            history={this.state.history}
+            refreshClickHandler={this.refreshMemorizedNumber}
+            refreshMaxCount={this.state.refreshMaxCount}
+            refreshCount={this.state.refreshCount}
+            isAppStarted={this.state.isAppStarted}
+            playMemorizedNumber={this.playMemorizedNumber}
+            stopMemorizedNumber={this.stopMemorizedNumber}
+            lengthChangeHandler={this.lengthChangeHandler}
+            length={this.state.digitCount}
+            timeChangeHandler={this.timeChangeHandler}
+          />
+        </div>
     );
   }
 }
 
-export default App;
+export default withRouter(props => <App {...props} />);

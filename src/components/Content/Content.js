@@ -4,6 +4,7 @@ import MemorizedNumber from './MemorizedNumber/MemorizedNumber';
 import Summary from './Summary/Summary';
 import FlowControls from './FlowControls/FlowControls';
 import MessageBox from './MessageBox/MessageBox';
+import ConfigPanel from './ConfigPanel/ConfigPanel';
 
 import classes from './Content.module.scss';
 
@@ -58,6 +59,15 @@ function Content(props) {
     { message && <MessageBox>{message}</MessageBox>}
     {props.isSummaryDisplayed && <Summary 
       summary={props.history} /> }
+    { props.isConfigPanelDisplayed && <ConfigPanel
+      time={props.time}
+      timeChangeHandler={props.timeChangeHandler}
+      lengthChangeHandler={props.lengthChangeHandler}
+      length={props.digitCount}
+      isConfigPanelDisplayed={props.isConfigPanelDisplayed}
+      IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}
+      isSummaryDisplayed={props.isSummaryDisplayed}
+      isSummaryDisplayedChangeHandler={props.isSummaryDisplayedChangeHandler}/>}
   </main>
 }
 

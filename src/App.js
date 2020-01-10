@@ -131,6 +131,7 @@ class App extends React.Component {
           changeMemorizedNumber={this.changeMemorizedNumber}
           memorizedNumber={this.state.memorizedNumber}
           time={this.state.time}
+          isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
           isSummaryDisplayed={this.state.isSummaryDisplayed}
           history={this.state.history}
           refreshClickHandler={this.refreshMemorizedNumber}

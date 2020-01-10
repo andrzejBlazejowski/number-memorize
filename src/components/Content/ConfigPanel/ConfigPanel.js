@@ -1,5 +1,4 @@
 import React from 'react'
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 import classes from './ConfigPanel.module.scss';
 
@@ -41,9 +40,6 @@ function ConfigPanel (props){
           checked={props.isSummaryDisplayed}/>
       </label></>
     }
-    <BurgerMenu 
-      onClickHandler={props.IsConfigPanelDisplayedChangeHandler} 
-      isChecked={props.isConfigPanelDisplayed}/>
   </div>
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ConfigPanel from './ConfigPanel/ConfigPanel';
+import BurgerMenu from './BurgerMenu/BurgerMenu';
 
 import classes from './Header.module.scss';
 
@@ -31,7 +31,7 @@ function Header( props ) {
   return <header className={headerClasses}>
     <div style={headerStyles} className={classes.header__summary}></div>
     <h3>Numbers memorizing !</h3>
-    <ConfigPanel
+    {/* <ConfigPanel
       time={props.time}
       timeChangeHandler={props.timeChangeHandler}
       lengthChangeHandler={props.lengthChangeHandler}
@@ -39,7 +39,11 @@ function Header( props ) {
       isConfigPanelDisplayed={props.isConfigPanelDisplayed}
       IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}
       isSummaryDisplayed={props.isSummaryDisplayed}
-      isSummaryDisplayedChangeHandler={props.isSummaryDisplayedChangeHandler}/>
+      isSummaryDisplayedChangeHandler={props.isSummaryDisplayedChangeHandler}/> */}
+      
+    <BurgerMenu 
+      onClickHandler={props.isConfigPanelDisplayedChangeHandler} 
+      isChecked={props.isConfigPanelDisplayed}/>
   </header>
 
 }

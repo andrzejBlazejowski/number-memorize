@@ -1,0 +1,11 @@
+@mixin addHover($color, $bgColor) {
+  &:hover{
+    @if $color != "" {
+      border: solid 1px $color;
+      color: $color, 10%;
+    }
+    @if $bgColor != "" {
+      background: $bgColor;
+    }
+  }
+}

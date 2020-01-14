@@ -1,21 +1,12 @@
 @import './../../../variables.scss';
-
-@mixin addButtonHover($color, $bgColor) {
-  &:hover{
-    border: solid 1px $color;
-    color: $color, 10%;
-    @if $bgColor != "" {
-      background: $bgColor;
-    }
-  }
-}
+@import './../../../mixins.scss';
 
 @mixin addButtonSpecialColors($name, $color) {
   &.#{$name}{
     border: solid 1px $color;
     color: $color;
     
-    @include addButtonHover( darken($color, 10%), "" );
+    @include addHover( darken($color, 10%), "" );
   }
 }
 
@@ -34,7 +25,7 @@
 
   text-transform: uppercase;
 
-  @include addButtonHover( darken($border-color, 10%), darken($main-bg-color, 2%) );
+  @include addHover( darken($border-color, 10%), darken($main-bg-color, 2%) );
 
   @include addButtonSpecialColors("play", $green-color);
   @include addButtonSpecialColors("pause", darken($fail-color, 40%));

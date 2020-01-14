@@ -1,3 +1,29 @@
+@import './../../../variables.scss';
+@import './../../../mixins.scss';
+
 .nav{
-  display: block;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+
+  &__item{
+    padding: 10px;
+    margin: 0;
+    
+    border-bottom: 1px solid $header-color;
+
+    &:last-child{
+      border-bottom: none;
+    }
+  
+    @include addHover( "", darken($main-bg-color, 10%) );
+  }
+  
+  &__link{
+    padding: 10px;
+
+    text-decoration: none;
+    color: $header-color;
+    text-transform: uppercase;
+  }
 }

@@ -1,0 +1,11 @@
+
+@import './../../../../variables.scss';
+
+.summary__item{
+  &--correct{
+    fill: $success-color;
+  }
+  &--incorrect{
+    fill: $fail-color;
+  }
+}

@@ -1,10 +1,73 @@
 import React from 'react'
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
 import classes from './Summary.module.scss';
+
+am4core.useTheme(am4themes_animated);
 
 class Summary extends React.Component {
   constructor( props ){
     super(props);
     this.updateComponentValues(props);
+  }
+
+  componentDidMount(){
+    if(this.props.summary.length === 0){
+      return;
+    }
+    let chart = am4core.create("summaryChart", am4charts.PieChart);
+    let chartData = [
+      { type: "valid",
+        subType: "valid",
+        subCount: this.correctCount,
+        count: this.correctCount,
+        color: am4core.color( "#C6E8A2" ) },
+      { type: "in valid",
+        subType: "in valid",
+        subCount: this.incorrectCount + this.emptyCount,
+        count: this.incorrectCount,
+        color: am4core.color( "#FFF3B3" ) },
+      { type: "empty",
+        count: this.emptyCount,
+        color: am4core.color( "#C7C26B" ) },
+    ];
+    
+    chart.data = chartData;
+
+    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.calculatePercent = true;
+    pieSeries.slices.template.tooltipText = "{category}: {value.value}"
+    pieSeries.labels.template.disabled = true;
+    
+    pieSeries.slices.template.propertyFields.fill = "color";
+    pieSeries.slices.template.stroke = am4core.color("#F7FFC0");
+    pieSeries.slices.template.strokeWidth = 1;
+    pieSeries.slices.template.strokeOpacity = 1;
+    pieSeries.hiddenState.properties.endAngle = -90;
+
+    pieSeries.dataFields.value = "count";
+    pieSeries.dataFields.category = "type";
+    
+    let pieSubSeries = chart.series.push(new am4charts.PieSeries());
+    pieSubSeries.calculatePercent = true;
+    pieSubSeries.labels.template.disabled = true;
+    pieSubSeries.slices.template.tooltipText = "{category}: {value.value}"
+    
+    pieSubSeries.slices.template.propertyFields.fill = "color";
+    pieSubSeries.slices.template.stroke = am4core.color("#F7FFC0");
+    pieSubSeries.slices.template.strokeWidth = 1;
+    pieSubSeries.slices.template.strokeOpacity = 1;
+    pieSubSeries.hiddenState.properties.endAngle = 270;
+    pieSubSeries.hiddenState.properties.startAngle = 270;
+
+    pieSubSeries.dataFields.value = "subCount";
+    pieSubSeries.dataFields.category = "subType";
+
+    chart.innerRadius = am4core.percent(10);
+    
+    this.chart = chart;
   }
 
   componentDidUpdate(){
@@ -42,18 +105,15 @@ class Summary extends React.Component {
         <span>{item.memorizedNumber?item.memorizedNumber:classes.empty}</span>
       </li>);
 
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+  }
+
   render() {
     return <div className={classes.summary}>
-        <div className={classes.summary__header}>
-          <span>You have submited {this.count} numbers,</span>
-          <span> {this.correctCount} was correct,</span>
-          <span> {this.incorrectCount} was incorrect</span>
-          <span> and {this.emptyCount} was empty</span>
-          <span>This means that You have submited </span>
-          <span> {this.correctPercentages}% of correct answers,</span>
-          <span> {this.incorrectPercentages}% of incorrect answers,</span>
-          <span> and {this.emptyPercentages}% of empty answers</span>
-        </div>
+        <div id="summaryChart"></div>
         <ul className={classes.summary__list}>
           {this.items}
         </ul>

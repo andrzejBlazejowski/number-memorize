@@ -9,16 +9,16 @@
   &__item{
     padding: 10px;
     margin: 0;
-    
+
     border-bottom: 1px solid $header-color;
 
     &:last-child{
       border-bottom: none;
     }
-  
+
     @include addHover( "", darken($main-bg-color, 10%) );
   }
-  
+
   &__link{
     padding: 10px;
 

@@ -68,8 +68,10 @@ function Content(props) {
         />
       </Route>
       <Route path="/summary">
-        <Summary 
-          summary={props.history} />
+        { props.history.length === 0 ?
+          <Redirect to="/play" />
+          :<Summary 
+          summary={props.history} /> }
       </Route>
       <Route path="/settings">
         <ConfigPanel

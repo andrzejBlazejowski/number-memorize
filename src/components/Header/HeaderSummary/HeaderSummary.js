@@ -1,9 +1,9 @@
 import React from 'react';
 import SummaryRect from './SummaryRect/SummaryRect';
 
-import classes from './Summary.module.scss';
+import classes from './HeaderSummary.module.scss';
 
-function Summary(props) {
+function HeaderSummary(props) {
   let viewportWidth = window.innerWidth;
   let summary = props.summary.slice(-20);
   let rectWidth = parseFloat( viewportWidth / summary.length ).toFixed(2);
@@ -29,4 +29,4 @@ function Summary(props) {
   </svg>
 }
 
-export default Summary;
+export default HeaderSummary;

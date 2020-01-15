@@ -8,10 +8,16 @@ function FlowControls(props) {
   }
   return (
     <div className={classes.flowControls}>
-      {props.refreshMaxCount > props.refreshCount && <button
-        className={refreshClasses.join(' ')}
-        onClick={props.refreshClickHandler}
-        >refresh</button>}
+      {props.refreshMaxCount > props.refreshCount && <div className={classes.refreshContainer}>
+        <button
+          className={refreshClasses.join(' ')}
+          onClick={props.refreshClickHandler}
+        >refresh</button> 
+        <div className={classes.counter}>
+          <div>{props.refreshMaxCount - props.refreshCount}</div>
+          <div>left</div>
+        </div>
+      </div>}
       { ! props.isAppStarted && <button
           className={[classes.button, classes.play].join(' ')}
           onClick={props.playMemorizedNumber}

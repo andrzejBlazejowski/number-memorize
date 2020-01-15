@@ -113,7 +113,7 @@ class Summary extends React.Component {
 
   render() {
     return <div className={classes.summary}>
-        <div id="summaryChart"></div>
+        <div id="summaryChart" className={classes.summary__chart} ></div>
         <ul className={classes.summary__list}>
           {this.items}
         </ul>

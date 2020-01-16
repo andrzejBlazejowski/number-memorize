@@ -1,3 +1,22 @@
+@import '../../../variables.scss';
+@import './../../../mixins.scss';
+
+@mixin addMatrixTransform($start, $end) {
+  @for $i from $start through $end {
+    &:nth-of-type(#{$i}n){
+      transform: matrix(10, 0, 0, 10, 150, (20 + ($i * 40)) );
+    }
+  }
+}
+
+@mixin addTransitionTimes($start, $end, $delay) {
+  @for $i from $start through $end {
+    &:nth-of-type(#{$i}n){
+      transform: matrix(10, 0, 0, 10, 150, (20 + ($i * 40)) );
+    }
+  }
+}
+
 .burger-menu{
   position: absolute;
   top: 0;
@@ -6,9 +25,13 @@
   height: 50px;
   margin-top: 16px;
 
+  z-index: 2;
+
+  background: $main-bg-color;
   cursor: pointer;
 
-  &__span{
+  &__link-item{
+    position: relative;
     display: block;
     width: 30px;
     height: 4px;
@@ -17,23 +40,80 @@
     margin-left: 10px;
     margin-right: 10px;
 
-    background: var(--header-color);
+    background: $header-color;
 
-    transition: transform 0.5s ease-out;
+    transition-property: transform, border-radius;
+    transition-delay: 0s;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+
+    &:nth-of-type(2){
+      transition-delay: 0.2s;
+      transition-duration: 0.7s;
+    }
+    &:nth-of-type(3){
+      transition-delay: 0.4s;
+      transition-duration: 0.9s;
+    }
+
+    &--opened{
+      border-radius: 0px;
+      @include addMatrixTransform(1,4);
+    }
   }
 
-  &__span--opened{
-    transform: translateY(0px) rotate(0.125turn);
+  &__icon-item{
+    position: absolute;
+    top:0;
+    
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 
-    &:nth-child(1){
-      transform: translateY(10px) rotate(0.125turn);
+    background: $header-color;
+
+    transition: transform, 0.5s ease-out;
+
+    &:nth-of-type(2){
+      transition-delay: 0.4s;
     }
-    &:nth-child(3){
-      transform: translateY(-9px) rotate(0.125turn);
+
+    &--opened{
+      &:nth-of-type(1){
+        transform: translateY(10px) rotate(0.375turn) ;
+      }
+      &:nth-of-type(2){
+        transform: translateY(-9px) rotate(0.125turn);
+      }
     }
+
+    &:nth-of-type(2){
+      top: 18px;
+    }
+
   }
+  
+  &__link{
+    position: absolute;
+    left: 2px;
+    top: 0;
+    right: 0;
+    bottom: 0;
 
-  &__span--opened:nth-child(2n){
-    transform: translateY(0px) rotate(0.375turn) ;
+    text-align: left;
+    font-size: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color:  $main-bg-color;
+
+    pointer-events: none;
+
+    &--opened{
+      pointer-events: all;
+    }
   }
 }
+ 

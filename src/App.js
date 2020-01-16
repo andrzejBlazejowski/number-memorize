@@ -20,7 +20,7 @@ class App extends React.Component {
       'timeIsUp': false,
       'history': [],
       'digitCount': 5,
-      'isConfigPanelDisplayed': false
+      'isNavDisplayed': false
      };
   }
 
@@ -38,9 +38,9 @@ class App extends React.Component {
     });
   }
   
-  isConfigPanelDisplayedChangeHandler = ()=>{
+  isNavDisplayedChangeHandler = ()=>{
     this.setState({
-      'isConfigPanelDisplayed': !this.state.isConfigPanelDisplayed
+      'isNavDisplayed': !this.state.isNavDisplayed
     });
   }
 
@@ -107,7 +107,7 @@ class App extends React.Component {
   componentDidUpdate( prevProps ){
     if( this.props.location.pathname !== prevProps.location.pathname ){
       this.setState({
-        'isConfigPanelDisplayed': false
+        'isNavDisplayed': false
       });
     }
   }
@@ -116,8 +116,8 @@ class App extends React.Component {
     return (
         <div className={classes.App}>
           <Header
-            isConfigPanelDisplayed={this.state.isConfigPanelDisplayed}
-            isConfigPanelDisplayedChangeHandler = {this.isConfigPanelDisplayedChangeHandler}
+            isNavDisplayed={this.state.isNavDisplayed}
+            isNavDisplayedChangeHandler = {this.isNavDisplayedChangeHandler}
             isSummaryDisplayed={this.state.isSummaryDisplayed}
             summary={this.state.history}
           />

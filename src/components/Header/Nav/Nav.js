@@ -6,8 +6,12 @@ import {
 import classes from './Nav.module.scss';
 
 function Nav(props) {
+  const ulClasses = [classes.nav];
+  if( props.isDisplayed ){
+    ulClasses.push( classes['nav--opened'] );
+  }
 
-  return<ul className={classes.nav}>
+  return<ul className={ulClasses.join(' ')}>
     <li className={classes.nav__item}>
       <Link className={classes.nav__link} to="/play">Play</Link>
     </li>

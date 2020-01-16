@@ -8,20 +8,17 @@ import classes from './Header.module.scss';
 
 function Header( props ) {
   let headerClasses = [classes.header];
-  if (props.isConfigPanelDisplayed) {
+  if (props.isNavDisplayed) {
     headerClasses.push(classes['header--opened']);
   } 
   return <header className={headerClasses.join(' ')}>
     <HeaderSummary
       summary={props.summary}
-    /> 
+    />
     <h3>Numbers memorizing !</h3> 
     <BurgerMenu
-      onClickHandler={props.isConfigPanelDisplayedChangeHandler}
-      isChecked={props.isConfigPanelDisplayed}/>
-    { props.isConfigPanelDisplayed &&
-      <Nav
-        summaryDisabled={props.summary.length === 0}/> }
+      onClickHandler={props.isNavDisplayedChangeHandler}
+      isChecked={props.isNavDisplayed}/>
   </header>
 
 }

@@ -188,7 +188,6 @@ class App extends React.Component {
             timeChangeHandler={this.timeChangeHandler}
             resetMemorizedNumber={this.resetMemorizedNumber}
             refreshMaxCountChangeHandler={this.refreshMaxCountChangeHandler}
-            refreshMaxCount={this.state.refreshMaxCount}
           />
         </div>
     );

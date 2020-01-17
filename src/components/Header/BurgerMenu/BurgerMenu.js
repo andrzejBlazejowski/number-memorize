@@ -54,6 +54,22 @@ function BurgerMenu (props){
           Summary
       </NavLink>
     </span>
+    <span className={burgerMenuItemClasses.join(' ')}>
+        <NavLink 
+          className={burgerLinkClasses.join(' ')} 
+          activeClassName={classes['burger-menu__link--active']}
+          to="/settings">
+            Settings
+        </NavLink>
+    </span>
+    <span className={burgerMenuItemClasses.join(' ')}>
+      <NavLink 
+        className={SummaryLinkClasses.join(' ')} 
+        activeClassName={classes['burger-menu__link--active']}
+        to="/summary">
+          Summary
+      </NavLink>
+    </span>
   </span>
 }
 

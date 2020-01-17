@@ -12,7 +12,8 @@
 @mixin addTransitionTimes($start, $end, $delay) {
   @for $i from $start through $end {
     &:nth-of-type(#{$i}n){
-      transform: matrix(10, 0, 0, 10, 150, (20 + ($i * 40)) );
+      transition-delay: ($i*$delay) s;
+      transition-duration: 0.5s + ($i*$delay);
     }
   }
 }
@@ -42,23 +43,24 @@
 
     background: $header-color;
 
-    transition-property: transform, border-radius;
+    transition-property: transform, border-radius, opacity;
     transition-delay: 0s;
     transition-duration: 0.5s;
     transition-timing-function: ease-out;
 
-    &:nth-of-type(2){
-      transition-delay: 0.2s;
-      transition-duration: 0.7s;
-    }
-    &:nth-of-type(3){
-      transition-delay: 0.4s;
-      transition-duration: 0.9s;
+    @include addTransitionTimes( 2, 6, .2 );
+    
+    &:nth-of-type(n+4){
+      opacity: 0;
     }
 
     &--opened{
       border-radius: 0px;
-      @include addMatrixTransform(1,4);
+      @include addMatrixTransform(1,6);
+
+    &:nth-of-type(n+4){
+      opacity: 1;
+    }
     }
   }
 

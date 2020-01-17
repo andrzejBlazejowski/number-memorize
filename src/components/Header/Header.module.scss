@@ -4,6 +4,7 @@
   bottom: 81vh;
   left: 0;
   right: 0;
+  z-index: 2;
 
   text-align: center;
   color: var(--header-color);
@@ -16,6 +17,5 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 2;
   }
 }

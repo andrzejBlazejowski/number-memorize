@@ -114,6 +114,16 @@
     &--opened{
       pointer-events: all;
     }
+
+    &--active{
+      pointer-events: none;
+      color: #666;
+    }
+
+    &--disabled{
+      pointer-events: none;
+      color: #666;
+    }
   }
 }
  

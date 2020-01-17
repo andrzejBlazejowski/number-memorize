@@ -1,7 +1,6 @@
 import React from 'react';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 
-import Nav from './Nav/Nav';
 import HeaderSummary from './HeaderSummary/HeaderSummary';
 
 import classes from './Header.module.scss';
@@ -18,7 +17,8 @@ function Header( props ) {
     <h3>Numbers memorizing !</h3> 
     <BurgerMenu
       onClickHandler={props.isNavDisplayedChangeHandler}
-      isChecked={props.isNavDisplayed}/>
+      isChecked={props.isNavDisplayed}
+      isSummaryDisabled={props.summary.length===0}/>
   </header>
 
 }

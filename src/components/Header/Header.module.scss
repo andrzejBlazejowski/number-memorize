@@ -1,10 +1,21 @@
 .header{
+  position: fixed;
+  top: 0;
+  bottom: 81vh;
+  left: 0;
+  right: 0;
+
   text-align: center;
   color: var(--header-color);
   background: var(--main-bg-color);
+  transition: bottom 1.4s ease-out;
 
   &--opened{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 2;
   }
 }
-

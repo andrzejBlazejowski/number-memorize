@@ -65,6 +65,7 @@ function Content(props) {
           refreshCount={props.refreshCount}
           isAppStarted={props.isAppStarted}
           stopMemorizedNumber={props.stopMemorizedNumber}
+          resetMemorizedNumber={props.resetMemorizedNumber}
         />
       </Route>
       <Route path="/summary">
@@ -80,7 +81,9 @@ function Content(props) {
           lengthChangeHandler={props.lengthChangeHandler}
           length={props.length}
           isConfigPanelDisplayed={props.isConfigPanelDisplayed}
-          IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}/>
+          IsConfigPanelDisplayedChangeHandler={props.isConfigPanelDisplayedChangeHandler}
+          refreshMaxCountChangeHandler={props.refreshMaxCountChangeHandler}
+          refreshMaxCount={props.refreshMaxCount}/>
       </Route>
     </Switch>
     { message && <MessageBox>{message}</MessageBox>}

@@ -10,19 +10,32 @@ import classes from './App.module.scss';
 class App extends React.Component {
   constructor(props){
     super(props);
+    let time = localStorage.getItem('displayTime');
+    let digitCount = localStorage.getItem('digitCount');
+    let history = JSON.parse(localStorage.getItem('history'));
+    let refreshCount = localStorage.getItem('refreshCount');
+    let refreshMaxCount = localStorage.getItem('refreshMaxCount');
+    time = time ? time : 2;
+    digitCount = digitCount ? digitCount : 5;
+    history = history ? history : [];
+    refreshCount = refreshCount ? refreshCount : 0;
+    refreshMaxCount = refreshMaxCount ? refreshMaxCount : 3;
+    
     this.state = {
       'isAppStarted': false,
       'number': 0,
       'memorizedNumber': '',
-      'time': 2,//[seconds]
-      'refreshMaxCount': 3,
-      'refreshCount': 0,
+      'time': time,//[seconds]
+      'refreshMaxCount': refreshMaxCount,
+      'refreshCount': refreshCount,
       'timeIsUp': false,
-      'history': [],
-      'digitCount': 5,
+      'history': history,
+      'digitCount': digitCount,
       'isNavDisplayed': false
      };
   }
+
+  timeout4ParseHistory = null;
 
   changeMemorizedNumber = (ev) => {
     const target = ev.target;
@@ -33,8 +46,10 @@ class App extends React.Component {
   }
 
   timeChangeHandler = (ev)=>{
+    let time = ev.target.value
+    localStorage.setItem('displayTime',time);
     this.setState({
-      'time': parseFloat(ev.target.value)
+      'time': parseFloat(time)
     });
   }
   
@@ -45,8 +60,18 @@ class App extends React.Component {
   }
 
   lengthChangeHandler = (ev)=>{
+    let digitCount = ev.target.value;
+    localStorage.setItem('digitCount',digitCount);
     this.setState({
-      'digitCount': ev.target.value
+      'digitCount': digitCount
+    });
+  }
+
+  refreshMaxCountChangeHandler = (ev) =>{
+    let refreshMaxCount = ev.target.value;
+    localStorage.setItem('refreshMaxCount', refreshMaxCount);
+    this.setState({
+      'refreshMaxCount': refreshMaxCount
     });
   }
 
@@ -56,6 +81,12 @@ class App extends React.Component {
       "memorizedNumber": parseInt(this.state.memorizedNumber),
       "number": parseInt(this.state.number)
     });
+    
+    window.clearTimeout( this.timeout4ParseHistory );
+    this.timeout4ParseHistory = window.setTimeout( ()=>{
+      localStorage.setItem('history', JSON.stringify(history));
+    }, 5*this.state.time*1000);
+
     this.setState({
       'number': this.getRandomNumber(this.state.digitCount),
       'memorizedNumber': '',
@@ -66,6 +97,7 @@ class App extends React.Component {
 
   refreshMemorizedNumber = () =>{
     if( this.state.refreshCount < this.state.refreshMaxCount ){
+      localStorage.getItem('refreshCount', this.state.refreshCount+1);
       this.setState({
         'number': this.getRandomNumber(this.state.digitCount),
         'memorizedNumber': '',
@@ -92,6 +124,21 @@ class App extends React.Component {
         'isAppStarted': false
       });
     }
+  }
+
+  resetMemorizedNumber = () =>{
+    localStorage.setItem('history',[]);
+    localStorage.setItem('refreshCount',0);
+
+    this.setState({
+      ...this.state,
+      'isAppStarted': false,
+      'number': 0,
+      'memorizedNumber': '',
+      'refreshCount': 0,
+      'timeIsUp': false,
+      'history': []
+     });
   }
 
   getRandomNumber=( length )=>{
@@ -139,6 +186,9 @@ class App extends React.Component {
             lengthChangeHandler={this.lengthChangeHandler}
             length={this.state.digitCount}
             timeChangeHandler={this.timeChangeHandler}
+            resetMemorizedNumber={this.resetMemorizedNumber}
+            refreshMaxCountChangeHandler={this.refreshMaxCountChangeHandler}
+            refreshMaxCount={this.state.refreshMaxCount}
           />
         </div>
     );

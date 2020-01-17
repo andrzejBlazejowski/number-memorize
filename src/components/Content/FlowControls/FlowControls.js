@@ -18,11 +18,16 @@ function FlowControls(props) {
           <div>left</div>
         </div>
       </div>}
-      { ! props.isAppStarted && <button
+      { ! props.isAppStarted ? <button
           className={[classes.button, classes.play].join(' ')}
           onClick={props.playMemorizedNumber}
-        >play</button>}
-      {/*
+        >play</button>
+      : <button
+      className={[classes.button, classes.pause].join(' ')}
+      onClick={props.resetMemorizedNumber}
+    >restart</button>}
+      {
+      /*
       i need to rethink what "PAUSE" button should do......
       (props.isAppStarted ?
         <button

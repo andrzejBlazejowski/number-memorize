@@ -29,6 +29,15 @@ function ConfigPanel (props){
           value={props.time}/>
           seconds
       </label>
+      <label className={classes.config__label + ' ' + classes['config__label--break']}>
+        Maximal times of refresh should be:   
+        <input 
+          className={classes.config__input}
+          name="time" 
+          type="number" min="0" max="20" step="1"
+          onChange={props.refreshMaxCountChangeHandler} 
+          value={props.refreshMaxCount}/>
+      </label>
   </div>
 }
 

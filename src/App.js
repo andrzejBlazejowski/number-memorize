@@ -6,7 +6,15 @@ import Header from './components/Header/Header';
 import Content from './components/Content/Content';
 
 import classes from './App.module.scss';
-
+/*
+todo: 
+- 3 left - nie równo jest 
+- brak jakiegoś efektu na hover na menu
+- możesz refreshowac zanim zaczniesz grać
+- brak legendy pod grafem
+- summary - nie wyrównane
+-
+*/
 class App extends React.Component {
   constructor(props){
     super(props);

@@ -1,0 +1,29 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t irvis007/number-memorize -f ./Dockerfile.dev ./
+
+script:
+  - docker run -e CI=true irvis007/number-memorize -test npm test -- --coverage
+
+after_success:
+  - docker build irvis007/number-memorize ./
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push irvis007/number-memorize
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-north-1 
+  app: number-memorize
+  env: NumberMemorize-env
+  bucket_name: elasticbeanstalk-eu-north-1-170487281548
+  bucket_path: number-memorize
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
